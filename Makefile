@@ -13,7 +13,8 @@ else
 CFLAGS=		-O3
 endif
 CFLAGS+=	-Wall -I/usr/local/include -DPROGRAM_NAME=\"ChemWiz\"
-LDFLAGS=	-L/usr/local/lib -lmujs
+LDFLAGS=	-L/usr/local/lib
+LDLIBS=		-lmujs
 CXXFLAGS=	$(CFLAGS) -std=c++17
 
 ifeq ($(USE_DSRPDB), yes)
@@ -25,7 +26,7 @@ endif
 OBJS:=		$(SRCS_CPP:.cpp=.o) $(SRCS_C:.c=.o)
 
 $(APP): $(OBJS) $(HEADERS) Makefile
-	$(CXX) -o $(APP) $(OBJS) $(LDFLAGS)
+	$(CXX) -o $(APP) $(LDFLAGS) $(OBJS) $(LDLIBS)
 
 $(OBJS): $(HEADERS) Makefile
 
