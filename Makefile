@@ -7,9 +7,14 @@ HEADERS=	common.h Exception.h Mat3.h molecule.h Vec3.h js-binding.h calculators.
 APP=		chemwiz
 CXX?=		clang++80
 CC?=		clang80
-CFLAGS=		-O3 -Wall -I/usr/local/include -DPROGRAM_NAME=\"ChemWiz\"
-CXXFLAGS=	$(CFLAGS) -std=c++17
+ifeq ($(DEBUG), yes)
+CFLAGS=		-g -O0 -fno-omit-frame-pointer
+else
+CFLAGS=		-O3
+endif
+CFLAGS+=	-Wall -I/usr/local/include -DPROGRAM_NAME=\"ChemWiz\"
 LDFLAGS=	-L/usr/local/lib -lmujs
+CXXFLAGS=	$(CFLAGS) -std=c++17
 
 ifeq ($(USE_DSRPDB), yes)
 SRCS_CPP+=	molecule-dsrpdb.cpp
