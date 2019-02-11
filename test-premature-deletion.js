@@ -1,8 +1,7 @@
-myimport('scripts/amino-acids-and-codons.js')
-myimport('scripts/amino-acids.js')
+var AminoAcids = require('scripts/amino-acids')
 
 var formula = "VVVVVV"
-var p = AminoAcids.combine(formula)
+var p = AminoAcids.AminoAcids.combine(formula)
 
 function rotateAtoms(M, atoms) {
   for (var i = 0; i < atoms.length; i++) {

@@ -1,6 +1,5 @@
-myimport('scripts/amino-acids-and-codons.js')
-myimport('scripts/amino-acids.js')
+var AminoAcids = require('scripts/amino-acids')
 
 var formula = "VVV"
-var aa = AminoAcids.combine(formula)
+var aa = AminoAcids.AminoAcids.combine(formula)
 writeXyzFile(aa, formula+".xyz")

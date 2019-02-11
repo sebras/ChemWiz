@@ -1,13 +1,14 @@
 // requires amino-acids-and-codons.js
 
+var AcidsCodons = require('scripts/amino-acids-and-codons')
 
-var AminoAcids = {
+exports.AminoAcids = {
   xyzPath: "molecules/Amino_Acids/",
   codeToName: function(code) {
-    return AMINO_ACIDS[code].name
+    return AcidsCodons.AMINO_ACIDS[code].name
   },
   codeToFile: function(code) {
-    return AminoAcids.xyzPath+"L-"+AminoAcids.codeToName(code)+".xyz"
+    return exports.AminoAcids.xyzPath+"L-"+exports.AminoAcids.codeToName(code)+".xyz"
   },
   decodePeptide: function(peptide, f) {
     for (var i = 0; i < peptide.length; i++) {
@@ -16,8 +17,8 @@ var AminoAcids = {
   },
   combine: function(peptide) {
     var peptideChain;
-    AminoAcids.decodePeptide(peptide, function(i,code) {
-      var aaMolecule = readXyzFile(AminoAcids.codeToFile(code))
+    exports.AminoAcids.decodePeptide(peptide, function(i,code) {
+      var aaMolecule = readXyzFile(exports.AminoAcids.codeToFile(code))
       if (i == 0) {
         peptideChain = aaMolecule
       } else {
