@@ -12,9 +12,12 @@ CFLAGS=		-g -O0 -fno-omit-frame-pointer
 else
 CFLAGS=		-O3
 endif
-CFLAGS+=	-Wall -I/usr/local/include -DPROGRAM_NAME=\"ChemWiz\"
-LDFLAGS=	-L/usr/local/lib
-LDLIBS=		-lmujs
+CFLAGS+=	-Wall -DPROGRAM_NAME=\"ChemWiz\"
+
+CFLAGS+=	$(shell pkg-config --static --cflags mujs)
+LDFLAGS+=	$(shell pkg-config --static --libs-only-L mujs)
+LDLIBS+=	$(shell pkg-config --static --libs-only-l mujs)
+
 CXXFLAGS=	$(CFLAGS) -std=c++17
 
 ifeq ($(USE_DSRPDB), yes)
